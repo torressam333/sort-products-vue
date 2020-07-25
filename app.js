@@ -194,6 +194,13 @@ new Vue({
          return this.products.sort((product1, product2) =>
              //Change sort type from asc-desc & vice versa
              (product1.price - product2.price) * this.order.direction);
+      },
+      classes(){
+         return [
+             'sort-control',
+             this.order.direction === 1 ? 'ascending' : 'descending',
+
+         ]
       }
    },
    methods: {
