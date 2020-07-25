@@ -195,5 +195,10 @@ new Vue({
              //Change sort type from asc-desc & vice versa
              (product1.price - product2.price) * this.order.direction);
       }
+   },
+   methods: {
+       sort(){
+          this.order.direction *= -1;
+       }
    }
 })
