@@ -188,7 +188,7 @@ new Vue({
            //Represents ascending order
          direction: 1,
 
-          columnName: 'price'
+          column: 'price'
        }
    },
    computed: {
@@ -197,15 +197,25 @@ new Vue({
              //Change sort type from asc-desc & vice versa
          {
             //Retrieve data from any of the products table columns [name, price, category]
-            let left = product1[this.order.columnName], right = product2[this.order.columnName];
-            return (left - right) * this.order.direction
+            let left = product1[this.order.column], right = product2[this.order.column];
+            if(isNaN(left) && isNaN(right)){
+               if (left < right) {
+                  return -1 * (this.order.direction)
+               }else if (left > right) {
+                  return (this.order.direction)
+               }else{
+                  return 0;
+               }
+            }else{
+               return (left - right) * this.order.direction
+            }
+
          });
       },
       classes(){
          return [
              'sort-control',
              this.order.direction === 1 ? 'ascending' : 'descending',
-
          ]
       }
    },
