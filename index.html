@@ -34,9 +34,9 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th v-on:click="sort('name')" :class="classes">Product Name</th>
-                            <th v-on:click="sort('category')" :class="classes">Category</th>
-                            <th v-on:click="sort('price')" :class="classes">Price</th>
+                            <th v-on:click="sort('name')" :class="classes('name')">Product Name</th>
+                            <th v-on:click="sort('category')" :class="classes('category')">Category</th>
+                            <th v-on:click="sort('price')" :class="classes('price')">Price</th>
                         </tr>
                     </thead>
                     <tbody>

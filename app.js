@@ -212,11 +212,8 @@ new Vue({
 
          });
       },
-      classes(){
-         return [
-             'sort-control',
-             this.order.direction === 1 ? 'ascending' : 'descending',
-         ]
+      sortType() {
+         return this.order.direction === 1 ? 'ascending' : 'descending';
       }
    },
    methods: {
@@ -224,6 +221,12 @@ new Vue({
           //Which column to sort
           this.order.column = column;
           this.order.direction *= -1;
-       }
+       },
+      classes(column){
+         return [
+            'sort-control',
+            column === this.order.column ? this.sortType : '',
+         ]
+      },
    }
 })
