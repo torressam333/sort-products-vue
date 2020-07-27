@@ -197,7 +197,7 @@ new Vue({
    },
    computed: {
       productsSorted() {
-         return this.products.sort((product1, product2) =>
+         return this.productsFiltered.sort((product1, product2) =>
              //Change sort type from asc-desc & vice versa
          {
             //Retrieve data from any of the products table columns [name, price, category]
@@ -222,6 +222,15 @@ new Vue({
       whenSearching() {
          return this.filters.name.length > 0;
       },
+      productsFiltered() {
+         let products = this.products;
+
+         if(this.filters.name){
+            let findName = new RegExp(this.filters.name, 'i');
+            products = products.filter(product => product.name.match(findName))
+         }
+         return products;
+      }
    },
    methods: {
        sort(column){
