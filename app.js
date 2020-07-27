@@ -271,6 +271,7 @@ new Vue({
                     category: '',
                     price: ''
                 }
+                $(this.$refs.vuemodal).modal('hide');
             }else{
                 alert('Please fill out all form fields');
             }
