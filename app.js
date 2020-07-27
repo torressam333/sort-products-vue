@@ -189,6 +189,10 @@ new Vue({
          direction: 1,
 
           column: 'price'
+       },
+       filters: {
+           //Which column to search by
+           name: ''
        }
    },
    computed: {
@@ -214,7 +218,10 @@ new Vue({
       },
       sortType() {
          return this.order.direction === 1 ? 'ascending' : 'descending';
-      }
+      },
+      whenSearching() {
+         return this.filters.name.length > 0;
+      },
    },
    methods: {
        sort(column){
@@ -228,5 +235,8 @@ new Vue({
             column === this.order.column ? this.sortType : '',
          ]
       },
+      clearSearch() {
+         this.filters.name = '';
+      }
    }
 })
