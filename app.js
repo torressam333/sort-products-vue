@@ -192,10 +192,17 @@ new Vue({
        },
        filters: {
            //Which column to search by
-           name: ''
-       }
+           name: '',
+       },
+       perPage: 7,
+       currentPage: 1
    },
    computed: {
+      productsPaginated() {
+         let start = (this.currentPage -1) * this.perPage;
+         let end  = this.currentPage * this.perPage;
+         return this.productsSorted.slice(start, end);
+      },
       productsSorted() {
          return this.productsFiltered.sort((product1, product2) =>
              //Change sort type from asc-desc & vice versa
@@ -246,6 +253,12 @@ new Vue({
       },
       clearSearch() {
          this.filters.name = '';
+      },
+      prev() {
+         this.currentPage--;
+      },
+      next() {
+         this.currentPage++;
       }
    }
 })
