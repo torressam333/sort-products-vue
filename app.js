@@ -272,6 +272,10 @@ new Vue({
       },
       clearSearch() {
          this.filters.name = '';
-      }
+      },
+      switchPage(page) {
+         //For pagination/page click event
+        this.currentPage = page;
+      },
    }
 });
