@@ -237,9 +237,28 @@ new Vue({
             products = products.filter(product => product.name.match(findName))
          }
          return products;
+      },
+      isFirstPage() {
+         return this.currentPage === 1;
+      },
+      isLastPage() {
+         return this.currentPage >= this.pages;
+      },
+      pages() {
+         return Math.ceil(this.productsFiltered.length / this.perPage);
       }
    },
    methods: {
+      prev() {
+         if(!this.isFirstPage) {
+            this.currentPage--;
+         }
+      },
+      next() {
+         if(!this.isLastPage) {
+            this.currentPage++;
+         }
+      },
        sort(column){
           //Which column to sort
           this.order.column = column;
@@ -253,12 +272,6 @@ new Vue({
       },
       clearSearch() {
          this.filters.name = '';
-      },
-      prev() {
-         this.currentPage--;
-      },
-      next() {
-         this.currentPage++;
       }
    }
-})
+});
