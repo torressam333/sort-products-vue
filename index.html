@@ -72,8 +72,8 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="product-modal" tabindex="-1" role="dialog" aria-labelledby="product-modalLabel"
-         aria-hidden="true">
+    <div class="modal fade" id="product-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true" ref="vuemodal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -86,25 +86,26 @@
                     <form>
                         <div class="form-group">
                             <label>Product Name</label>
-                            <input type="text" class="form-control">
+                            <input type="text" v-model="product.name" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Category</label>
-                            <select class="form-control">
+                            <input type="text" v-model="product.category" class="form-control">
+                           <!-- <select class="form-control">
                                 <option value="1">Category 1</option>
                                 <option value="2">Category 2</option>
                                 <option value="3">Category 3</option>
-                            </select>
+                            </select>-->
                         </div>
                         <div class="form-group">
                             <label>Price ($)</label>
-                            <input type="number" class="form-control">
+                            <input type="number" v-model="product.price" class="form-control">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" @click.prevent="save">Save changes</button>
                 </div>
             </div>
         </div>
