@@ -279,6 +279,13 @@ new Vue({
         },
     },
     methods: {
+        remove(product) {
+            if (confirm("Are you sure?")) {
+                let index = this.products.findIndex(item => item.id === product.id);
+                //Remove one item and add the new product upon updating
+                this.products.splice(index, 1);
+            }
+        },
         add() {
             this.isEdit = false;
 
