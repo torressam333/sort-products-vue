@@ -203,9 +203,17 @@ new Vue({
             name: '',
             category: '',
             price: ''
-        }
+        },
+
+        isEdit: false
     },
     computed: {
+        modalTitle() {
+            return this.isEdit ? 'Update Product' : 'Add new product';
+        },
+        modalTextButton() {
+            return this.isEdit ? 'Update' : 'Save';
+        },
         categories() {
             //extract categories from products
             let categories = this.products.map(el => el.category);
@@ -271,6 +279,14 @@ new Vue({
         },
     },
     methods: {
+        edit(product) {
+            this.product = Object.assign({}, product);
+
+            this.isEdit = true;
+
+            //Show model
+            $(this.$refs.vuemodal).modal('show');
+        },
         save() {
             if(this.product.name && this.product.category && this.product.price){
                 this.product.id = this.products.length + 1
