@@ -279,6 +279,19 @@ new Vue({
         },
     },
     methods: {
+        add() {
+            this.isEdit = false;
+
+            //reset the product object for next item
+            this.product = {
+                id: null,
+                name: '',
+                category: '',
+                price: ''
+            }
+            //Show model
+            $(this.$refs.vuemodal).modal('show');
+        },
         edit(product) {
             this.product = Object.assign({}, product);
 
@@ -286,6 +299,16 @@ new Vue({
 
             //Show model
             $(this.$refs.vuemodal).modal('show');
+        },
+        saveOrUpdate() {
+            this.edit ? this.update() : this.save();
+        },
+        update() {
+            let index = this.products.findIndex(item => item.id === this.product.id);
+            //Remove one item and add the new product upon updating
+            this.products.splice(index, 1, this.product);
+            this.isEdit = false;
+            $(this.$refs.vuemodal).modal('hide');
         },
         save() {
             if(this.product.name && this.product.category && this.product.price){
