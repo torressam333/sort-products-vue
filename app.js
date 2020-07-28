@@ -206,6 +206,20 @@ new Vue({
         }
     },
     computed: {
+        categories() {
+            //extract categories from products
+            let categories = this.products.map(el => el.category);
+            //Convert to set() to remove duplicates then convert SET to array with Array.from
+            return Array.from(new Set(categories)).sort((a,b) => {
+                if (a < b) {
+                    return -1;
+                }else if (a > b) {
+                    return 1;
+                }else{
+                    return 0;
+                }
+            });
+        },
         productsPaginated() {
             let start = (this.currentPage - 1) * this.perPage;
             let end = this.currentPage * this.perPage;
@@ -254,7 +268,7 @@ new Vue({
         },
         pages() {
             return Math.ceil(this.productsFiltered.length / this.perPage);
-        }
+        },
     },
     methods: {
         save() {
